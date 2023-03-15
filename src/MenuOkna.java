@@ -5,52 +5,46 @@ public class MenuOkna extends JMenuBar{
     JMenuItem otworzPlik = new JMenuItem("Otworz plik");
     JMenuItem zapiszPlik = new JMenuItem("Zapisz plik");
     JMenuItem  zakoncz = new JMenuItem("Zakończ");
-    JMenuItem lewCzysc = new JMenuItem("Wyczyść lewy");
-    JMenuItem lewZad1 = new JMenuItem("Kopiuj");
-    JMenuItem praCzysc = new JMenuItem("Wyczyść prawy");
-    JMenu szare = new JMenu("Obrazy szaroodcieniowe");
+    JMenuItem lewWECzysc = new JMenuItem("Wyczyść lewe wejscie");
+    JMenuItem praWeCzysc = new JMenuItem("Wyczyść prawe wejscie");
+    JMenuItem wejscieCzysc = new JMenuItem("Wyczyść wyjscie");
+    JMenu kopiowanie = new JMenu("kopiuj z");
+    JMenuItem doWejscia1 = new JMenuItem("wyjscia do wejscia 1");
+    JMenuItem doWejscia2 = new JMenuItem("wyjscia do wejscia 2");
+    JMenu operacje = new JMenu("operacje arytmetyczne");
+    JMenuItem dodawanie = new JMenuItem("dodawanie");
+    JMenuItem odejmowanie = new JMenuItem("odejmowanie");
+    JMenuItem mnożenie = new JMenuItem("mnożenie");
+    JMenuItem dzielenie = new JMenuItem("dzielenie");
 
-    JMenuItem czerwony = new JMenuItem("wg R");
 
-    JMenuItem zielony = new JMenuItem("wg G");
 
-    JMenuItem niebieski = new JMenuItem("wg B");
-
-    JMenuItem srednia = new JMenuItem("średnia RGB");
-
-    JMenuItem YUV = new JMenuItem("Model YUV");
-    JMenu kolory = new JMenu("Opeeracje na obrazach kolorowych");
-    JMenuItem jasnoc = new JMenuItem("Zmiana jasności");
-    JMenuItem kontrast = new JMenuItem("Zmiana kontrastu");
-    JMenuItem negacja = new JMenuItem("Negacja obrazu");
-    JMenuItem zakres = new JMenuItem("Zmiana zakresu jasnosci");
     public MenuOkna()
     {
         //menu Plik
         plik.add(otworzPlik);
         plik.add(zapiszPlik);
-        plik.add(lewCzysc);
-        plik.add(lewZad1);
-        plik.add(praCzysc);
+        plik.add(lewWECzysc);
+        plik.add(praWeCzysc);
+        plik.add(wejscieCzysc);
+
         //linia oddzielająca JMenuItem
         plik.add(new JSeparator());
         plik.add(zakoncz);
         add(plik);
 
-        //menu szare
-        szare.add(czerwony);
-        szare.add(zielony);
-        szare.add(niebieski);
-        szare.add(srednia);
-        szare.add(YUV);
-        add(szare);
+        //menu kopiowania
+        kopiowanie.add(doWejscia1);
+        kopiowanie.add(doWejscia2);
+        add(kopiowanie);
 
-        //menu kolory
-        kolory.add(jasnoc);
-        kolory.add(kontrast);
-        kolory.add(negacja);
-        kolory.add(zakres);
-        add(kolory);
+        //menu operacyji
+        operacje.add(dodawanie);
+        operacje.add(odejmowanie);
+        operacje.add(mnożenie);
+        operacje.add(dzielenie);
+        add(operacje);
+
 
     }
 }
