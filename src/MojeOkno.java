@@ -6,10 +6,7 @@ import java.awt.FlowLayout;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 
-import javax.swing.JFileChooser;
-import javax.swing.JFrame;
-import javax.swing.JPanel;
-import javax.swing.JOptionPane;
+import javax.swing.*;
 import javax.swing.filechooser.FileNameExtensionFilter;
 public class MojeOkno  extends JFrame implements ActionListener {
     //Tworzymy panele okna głównego
@@ -52,6 +49,17 @@ public class MojeOkno  extends JFrame implements ActionListener {
         menu.otworzPlik.addActionListener(this);
         menu.zapiszPlik.addActionListener(this);
         menu.zakoncz.addActionListener(this);
+        menu.lewWECzysc.addActionListener(this);
+        menu.praWeCzysc.addActionListener(this);
+        menu.wejscieCzysc.addActionListener(this);
+
+        menu.doWejscia1.addActionListener(this);
+        menu.doWejscia2.addActionListener(this);
+
+        menu.dodawanie.addActionListener(this);
+        menu.odejmowanie.addActionListener(this);
+        menu.mnożenie.addActionListener(this);
+        menu.dzielenie.addActionListener(this);
 
     }
 
@@ -68,7 +76,32 @@ public class MojeOkno  extends JFrame implements ActionListener {
             zapiszPlik();
         } else if (label.equals("Zakończ")) {
             System.exit(0);
+        } else if (label.equals("Wyczyść lewe wejscie")) {
+
+        } else if (label.equals("Wyczyść prawe wejscie")) {
+
+        } else if (label.equals("Wyczyść wyjscie")) {
+
+        } else if (label.equals("wyjscia do wejscia 1")) {
+
+
+        } else if (label.equals("wyjscia do wejscia 2")) {
+
+
+        } else if (label.equals("dodawanie")) {
+
+
+        } else if (label.equals("odejmowanie")) {
+
+
+        } else if (label.equals("mnożenie")) {
+
+
+        }else if (label.equals("dzielenie")) {
+
+
         }
+
     }
 
     //akcja w przypadku wyboru "otwórz plik z menu"
