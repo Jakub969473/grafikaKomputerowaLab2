@@ -2,7 +2,8 @@ import javax.swing.*;
 
 public class MenuOkna extends JMenuBar{
     JMenu plik = new JMenu("Plik");
-    JMenuItem otworzPlik = new JMenuItem("Otworz plik");
+    JMenuItem wczytajLewy = new JMenuItem("Wczytaj lewy");
+    JMenuItem wczytajPrawy = new JMenuItem("Wczytaj prawy");
     JMenuItem zapiszPlik = new JMenuItem("Zapisz plik");
     JMenuItem  zakoncz = new JMenuItem("Zakończ");
     JMenuItem lewWECzysc = new JMenuItem("Wyczyść lewe wejscie");
@@ -22,7 +23,8 @@ public class MenuOkna extends JMenuBar{
     public MenuOkna()
     {
         //menu Plik
-        plik.add(otworzPlik);
+        plik.add(wczytajLewy);
+        plik.add(wczytajPrawy);
         plik.add(zapiszPlik);
         plik.add(lewWECzysc);
         plik.add(praWeCzysc);

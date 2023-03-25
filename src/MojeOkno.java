@@ -46,7 +46,8 @@ public class MojeOkno  extends JFrame implements ActionListener {
 
     private void ustawNasluchZdarzen() {
         //czyli kto kogo podsłuchuje
-        menu.otworzPlik.addActionListener(this);
+        menu.wczytajLewy.addActionListener(this);
+        menu.wczytajPrawy.addActionListener(this);
         menu.zapiszPlik.addActionListener(this);
         menu.zakoncz.addActionListener(this);
         menu.lewWECzysc.addActionListener(this);
@@ -70,42 +71,105 @@ public class MojeOkno  extends JFrame implements ActionListener {
 
         //pobieramy etykietę z przycisku
         String label = e.getActionCommand();
-        if (label.equals("Otworz plik")) {
-            otworzPlik();
+        if (label.equals("Wczytaj lewy")) {
+            wczytajLewy();
+        }else if (label.equals("Wczytaj prawy")) {
+            wczytajPrawy();
         } else if (label.equals("Zapisz plik")) {
             zapiszPlik();
         } else if (label.equals("Zakończ")) {
             System.exit(0);
         } else if (label.equals("Wyczyść lewe wejscie")) {
 
+            wejscie1.wyczysc();
+
         } else if (label.equals("Wyczyść prawe wejscie")) {
+
+            wejscie2.wyczysc();
 
         } else if (label.equals("Wyczyść wyjscie")) {
 
+            wyjscie.wyczysc();
+
         } else if (label.equals("wyjscia do wejscia 1")) {
 
+            int w = wyjscie.plotno.getWidth();
+            int h = wyjscie.plotno.getHeight();
+
+            //skopiuj prawy panel na bazie lewego
+            wejscie1.kopiuj(wyjscie.plotno);
+            //dopasowanie zawartości w przypadku zmiany wymiarów
+            dopasujSieDoZawartosci();
 
         } else if (label.equals("wyjscia do wejscia 2")) {
 
+            int w = wyjscie.plotno.getWidth();
+            int h = wyjscie.plotno.getHeight();
+
+            //skopiuj prawy panel na bazie lewego
+            wejscie2.kopiuj(wyjscie.plotno);
+            //dopasowanie zawartości w przypadku zmiany wymiarów
+            dopasujSieDoZawartosci();
 
         } else if (label.equals("dodawanie")) {
+
+            int w = wyjscie.plotno.getWidth();
+            int h = wyjscie.plotno.getHeight();
+
+            String input=JOptionPane.showInputDialog("Proszę podać alfe");
+
+            double alfa=0;
+
+            try {
+                alfa= Double.parseDouble(input);
+            }catch(NumberFormatException wrongInput){
+                JOptionPane.showMessageDialog(null,"Wartość musi być liczbą,",
+                        "Alert",JOptionPane.ERROR_MESSAGE);
+            }
+
+            //skopiuj prawy panel na bazie lewego
+            wyjscie.dodawanie(wejscie1.plotno,wejscie2.plotno,alfa);
+            //dopasowanie zawartości w przypadku zmiany wymiarów
+            dopasujSieDoZawartosci();
 
 
         } else if (label.equals("odejmowanie")) {
 
+            int w = wyjscie.plotno.getWidth();
+            int h = wyjscie.plotno.getHeight();
+
+            //skopiuj prawy panel na bazie lewego
+            wyjscie.odejmowanie(wejscie1.plotno,wejscie2.plotno);
+            //dopasowanie zawartości w przypadku zmiany wymiarów
+            dopasujSieDoZawartosci();
+
 
         } else if (label.equals("mnożenie")) {
+
+            int w = wyjscie.plotno.getWidth();
+            int h = wyjscie.plotno.getHeight();
+
+            //skopiuj prawy panel na bazie lewego
+            wyjscie.mnożenie(wejscie1.plotno,wejscie2.plotno);
+            //dopasowanie zawartości w przypadku zmiany wymiarów
+            dopasujSieDoZawartosci();
 
 
         }else if (label.equals("dzielenie")) {
 
+            int w = wyjscie.plotno.getWidth();
+            int h = wyjscie.plotno.getHeight();
 
+            //skopiuj prawy panel na bazie lewego
+            wyjscie.dzielenie(wejscie1.plotno,wejscie2.plotno);
+            //dopasowanie zawartości w przypadku zmiany wymiarów
+            dopasujSieDoZawartosci();
         }
 
     }
 
     //akcja w przypadku wyboru "otwórz plik z menu"
-    private void otworzPlik() {
+    private String otworzPlik() {
 
         //okno dialogowe do wyboru pliku graficznego
         JFileChooser otworz = new JFileChooser();
@@ -119,13 +183,33 @@ public class MojeOkno  extends JFrame implements ActionListener {
         if (wynik == JFileChooser.APPROVE_OPTION) {
             //wyłuskanie ścieżki do wybranego pliku
             sciezkaDoPlik = otworz.getSelectedFile().getPath();
-            int w = wejscie1.plotno.getWidth();
-            int h = wejscie1.plotno.getHeight();
-            //wczytanie pliku graficznego na lewy panel
-            wejscie1.wczytajPlikGraficzny(sciezkaDoPlik);
-            if (w != wejscie1.plotno.getWidth() || h != wejscie1.plotno.getHeight())
-                dopasujSieDoZawartosci();
         }
+
+        return sciezkaDoPlik;
+    }
+
+    private void wczytajLewy(){
+
+        sciezkaDoPlik=otworzPlik();
+
+        int w = wejscie1.plotno.getWidth();
+        int h = wejscie1.plotno.getHeight();
+        //wczytanie pliku graficznego na lewy panel
+        wejscie1.wczytajPlikGraficzny(sciezkaDoPlik);
+        dopasujSieDoZawartosci();
+
+    }
+
+    private void wczytajPrawy(){
+
+        sciezkaDoPlik=otworzPlik();
+
+        int w = wejscie2.plotno.getWidth();
+        int h = wejscie2.plotno.getHeight();
+        //wczytanie pliku graficznego na lewy panel
+        wejscie2.wczytajPlikGraficzny(sciezkaDoPlik);
+        dopasujSieDoZawartosci();
+
     }
 
     private void zapiszPlik() {
