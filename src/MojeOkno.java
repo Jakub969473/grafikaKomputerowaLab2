@@ -99,7 +99,8 @@ public class MojeOkno  extends JFrame implements ActionListener {
             //skopiuj prawy panel na bazie lewego
             wejscie1.kopiuj(wyjscie.plotno);
             //dopasowanie zawartości w przypadku zmiany wymiarów
-            dopasujSieDoZawartosci();
+            if(w != wyjscie.plotno.getWidth() || h != wyjscie.plotno.getHeight())
+                dopasujSieDoZawartosci();
 
         } else if (label.equals("wyjscia do wejscia 2")) {
 
@@ -109,7 +110,8 @@ public class MojeOkno  extends JFrame implements ActionListener {
             //skopiuj prawy panel na bazie lewego
             wejscie2.kopiuj(wyjscie.plotno);
             //dopasowanie zawartości w przypadku zmiany wymiarów
-            dopasujSieDoZawartosci();
+            if(w != wyjscie.plotno.getWidth() || h != wyjscie.plotno.getHeight())
+                dopasujSieDoZawartosci();
 
         } else if (label.equals("dodawanie")) {
 
@@ -130,7 +132,8 @@ public class MojeOkno  extends JFrame implements ActionListener {
             //skopiuj prawy panel na bazie lewego
             wyjscie.dodawanie(wejscie1.plotno,wejscie2.plotno,alfa);
             //dopasowanie zawartości w przypadku zmiany wymiarów
-            dopasujSieDoZawartosci();
+            if(w != wyjscie.plotno.getWidth() || h != wyjscie.plotno.getHeight())
+                dopasujSieDoZawartosci();
 
 
         } else if (label.equals("odejmowanie")) {
@@ -141,7 +144,8 @@ public class MojeOkno  extends JFrame implements ActionListener {
             //skopiuj prawy panel na bazie lewego
             wyjscie.odejmowanie(wejscie1.plotno,wejscie2.plotno);
             //dopasowanie zawartości w przypadku zmiany wymiarów
-            dopasujSieDoZawartosci();
+            if(w != wyjscie.plotno.getWidth() || h != wyjscie.plotno.getHeight())
+                dopasujSieDoZawartosci();
 
 
         } else if (label.equals("mnożenie")) {
@@ -152,7 +156,8 @@ public class MojeOkno  extends JFrame implements ActionListener {
             //skopiuj prawy panel na bazie lewego
             wyjscie.mnożenie(wejscie1.plotno,wejscie2.plotno);
             //dopasowanie zawartości w przypadku zmiany wymiarów
-            dopasujSieDoZawartosci();
+            if(w != wyjscie.plotno.getWidth() || h != wyjscie.plotno.getHeight())
+                dopasujSieDoZawartosci();
 
 
         }else if (label.equals("dzielenie")) {
@@ -163,7 +168,8 @@ public class MojeOkno  extends JFrame implements ActionListener {
             //skopiuj prawy panel na bazie lewego
             wyjscie.dzielenie(wejscie1.plotno,wejscie2.plotno);
             //dopasowanie zawartości w przypadku zmiany wymiarów
-            dopasujSieDoZawartosci();
+            if(w != wyjscie.plotno.getWidth() || h != wyjscie.plotno.getHeight())
+                dopasujSieDoZawartosci();
         }
 
     }
@@ -194,9 +200,10 @@ public class MojeOkno  extends JFrame implements ActionListener {
 
         int w = wejscie1.plotno.getWidth();
         int h = wejscie1.plotno.getHeight();
-        //wczytanie pliku graficznego na lewy panel
+
         wejscie1.wczytajPlikGraficzny(sciezkaDoPlik);
-        dopasujSieDoZawartosci();
+        if (w != wejscie1.plotno.getWidth() || h != wejscie1.plotno.getHeight())
+            dopasujSieDoZawartosci();
 
     }
 
@@ -206,9 +213,10 @@ public class MojeOkno  extends JFrame implements ActionListener {
 
         int w = wejscie2.plotno.getWidth();
         int h = wejscie2.plotno.getHeight();
-        //wczytanie pliku graficznego na lewy panel
+
         wejscie2.wczytajPlikGraficzny(sciezkaDoPlik);
-        dopasujSieDoZawartosci();
+        if (w != wejscie2.plotno.getWidth() || h != wejscie2.plotno.getHeight())
+            dopasujSieDoZawartosci();
 
     }
 
@@ -238,8 +246,10 @@ public class MojeOkno  extends JFrame implements ActionListener {
 
     private void dopasujSieDoZawartosci() {
         //dostosowanie okna do zawartości
+
+        setLocationRelativeTo(null);
+
         pack();
         //wyśrodkowanie ramki
-        setLocationRelativeTo(null);
     }
 }
