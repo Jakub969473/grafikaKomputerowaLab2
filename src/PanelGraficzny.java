@@ -262,7 +262,12 @@ public class PanelGraficzny extends JPanel {
 
         ustawRozmiar(new Dimension(lewy.getWidth(),lewy.getHeight()));
         Color ci,ci2;
-        double czerw, ziel, nieb,czerw2, ziel2, nieb2;
+        double maxCzerw1=0, maxZiel1=0, maxNieb1=0,maxCzerw2=0,maxZiel2=0,maxNieb2=0, maxCzerw,
+                maxZiel,maxNieb,minCzerw1=255, minZiel1=255, minNieb1=255,minCzerw2=255,
+                minZiel2=255,minNieb2=255, minCzerw, minZiel,minNieb;
+        double czerw,ziel,nieb,czerw2,ziel2,nieb2;
+
+
 
         for(int i=0; i<lewy.getWidth(); i++)
             for(int j=0; j<lewy.getHeight(); j++){
@@ -270,13 +275,52 @@ public class PanelGraficzny extends JPanel {
                 //obliczenie wartości koloru według wzoru i zaookrąglenie do całości
                 ci = new Color(lewy.getRGB(i,j));
                 ci2 = new Color(prawy.getRGB(i,j));
-                czerw = ci.getRed()/255.0;
-                ziel = ci.getGreen()/255.0;
-                nieb = ci.getBlue()/255.0;
 
-                czerw2 =  ci2.getRed()/255.0;
-                ziel2 =  ci2.getGreen()/255.0;
-                nieb2 =  ci2.getBlue()/255.0;
+                maxCzerw1=czyMax((int)maxCzerw1,ci.getRed());
+                maxZiel1=czyMax((int)maxZiel1,ci.getGreen());
+                maxNieb1=czyMax((int)maxNieb1,ci.getBlue());
+                maxCzerw2=czyMax((int)maxCzerw2,ci2.getRed());
+                maxZiel2=czyMax((int)maxZiel2,ci2.getGreen());
+                maxNieb2=czyMax((int)maxNieb2,ci2.getBlue());
+
+                minCzerw1=czyMin((int)minCzerw1,ci.getRed());
+                minZiel1=czyMin((int)minZiel1,ci.getGreen());
+                minNieb1=czyMin((int)minNieb1,ci.getBlue());
+                minCzerw2=czyMin((int)minCzerw2,ci.getRed());
+                minZiel2=czyMin((int)minZiel2,ci.getGreen());
+                minNieb2=czyMin((int)minNieb2,ci.getBlue());
+            }
+
+        maxCzerw=czyMax((int)maxCzerw1,(int)maxCzerw2);
+        maxNieb=czyMax((int)maxNieb1,(int)maxNieb2);
+        maxZiel=czyMax((int)maxZiel1,(int)maxZiel2);
+
+        minCzerw=czyMin((int)minCzerw1,(int)minCzerw2);
+        minNieb=czyMin((int)minNieb1,(int)minNieb2);
+        minZiel=czyMin((int)minZiel1,(int)minZiel2);
+
+        for(int i=0; i<lewy.getWidth(); i++)
+            for(int j=0; j<lewy.getHeight(); j++){
+
+                //obliczenie wartości koloru według wzoru i zaookrąglenie do całości
+                ci = new Color(lewy.getRGB(i,j));
+                ci2 = new Color(prawy.getRGB(i,j));
+
+                czerw=ci.getRed()-minCzerw;
+                nieb=ci.getBlue()-minNieb;
+                ziel=ci.getGreen()-minZiel;
+
+                czerw2=ci2.getRed()-minCzerw;
+                nieb2=ci2.getBlue()-minNieb;
+                ziel2=ci2.getGreen()-minZiel;
+
+                czerw/=(maxCzerw-minCzerw);
+                nieb/=(maxNieb-minNieb);
+                ziel/=(maxZiel-minZiel);
+
+                czerw2/=(maxCzerw-minCzerw);
+                nieb2/=(maxNieb-minNieb);
+                ziel2/=(maxZiel-minZiel);
 
                 czerw*=czerw2;
                 nieb*=nieb2;
@@ -366,7 +410,7 @@ public class PanelGraficzny extends JPanel {
 
                 System.out.println(czerw+ " "+nieb+" "+ziel);*/
 
-                /*czerw=ci.getRed()-minCzerw;
+                czerw=ci.getRed()-minCzerw;
                 nieb=ci.getBlue()-minNieb;
                 ziel=ci.getGreen()-minZiel;
 
@@ -396,14 +440,14 @@ public class PanelGraficzny extends JPanel {
 
                 czerw*=maxCzerw;
                 nieb*=maxNieb;
-                ziel*=maxZiel;*/
+                ziel*=maxZiel;
 
-                czerw=(double)ci.getRed()/ci2.getRed();
+                /*czerw=(double)ci.getRed()/ci2.getRed();
                 czerw*=maxCzerw;
                 ziel=(double)ci.getGreen()/ci2.getGreen();
                 ziel*=maxZiel;
                 nieb=(double)ci.getBlue()/ci2.getBlue();
-                nieb*=maxNieb;
+                nieb*=maxNieb;*/
 
                 //kolor może mieć wartość od 0 do 255, wartości pozatym zakresem trzeba obciąć
 

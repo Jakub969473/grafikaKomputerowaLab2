@@ -202,6 +202,20 @@ public class MojeOkno  extends JFrame implements ActionListener {
         int h = wejscie1.plotno.getHeight();
 
         wejscie1.wczytajPlikGraficzny(sciezkaDoPlik);
+
+        if(w == wejscie1.plotno.getWidth()){
+
+            wejscie1.ustawRozmiar(new Dimension(w+5,h));
+            dopasujSieDoZawartosci();
+            wejscie1.wczytajPlikGraficzny(sciezkaDoPlik);
+
+        }else if(h == wejscie1.plotno.getHeight()){
+
+            wejscie1.ustawRozmiar(new Dimension(w,h+5));
+            dopasujSieDoZawartosci();
+            wejscie1.wczytajPlikGraficzny(sciezkaDoPlik);
+        }
+
         if (w != wejscie1.plotno.getWidth() || h != wejscie1.plotno.getHeight())
             dopasujSieDoZawartosci();
 
@@ -215,6 +229,17 @@ public class MojeOkno  extends JFrame implements ActionListener {
         int h = wejscie2.plotno.getHeight();
 
         wejscie2.wczytajPlikGraficzny(sciezkaDoPlik);
+
+        if(w == wejscie2.plotno.getWidth()){
+            wejscie2.ustawRozmiar(new Dimension(405,h));
+            dopasujSieDoZawartosci();
+            wejscie2.wczytajPlikGraficzny(sciezkaDoPlik);
+        }else if( h == wejscie2.plotno.getHeight()){
+            wejscie2.ustawRozmiar(new Dimension(w,405));
+            dopasujSieDoZawartosci();
+            wejscie2.wczytajPlikGraficzny(sciezkaDoPlik);
+        }
+
         if (w != wejscie2.plotno.getWidth() || h != wejscie2.plotno.getHeight())
             dopasujSieDoZawartosci();
 
@@ -245,11 +270,9 @@ public class MojeOkno  extends JFrame implements ActionListener {
     }
 
     private void dopasujSieDoZawartosci() {
-        //dostosowanie okna do zawartości
-
-        setLocationRelativeTo(null);
 
         pack();
-        //wyśrodkowanie ramki
+
+        setLocationRelativeTo(null);
     }
 }
